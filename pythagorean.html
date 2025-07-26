@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pythagorean Personality Number</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-image: url('https://deepajaykay.github.io/LuckyNumber_Pub/background4.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ffd700;
+      max-width: 700px;
+    }
+    .title {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 36px;
+      color: gold;
+      text-shadow: 0 0 10px #ffd700;
+      margin-bottom: 10px;
+    }
+    .input-name {
+      background-color: #fff;
+      color: #333;
+      border: 2px solid #ffd700;
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 12px;
+      text-align: center;
+      width: 300px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: gold;
+      color: black;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #e6c200;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #00ffcc;
+      animation: flash 1s infinite alternate;
+    }
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0.6; }
+    }
+    .business-card {
+      display: none;
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: rgba(255, 215, 0, 0.1);
+      border: 1px solid gold;
+      color: #fff;
+      text-align: left;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      font-size: 16px;
+      line-height: 1.6;
+      animation: fadeIn 1s ease forwards;
+      position: relative;
+    }
+    .business-card .top-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .business-card .name-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .business-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid gold;
+      object-fit: cover;
+      box-shadow: 0 0 8px gold;
+    }
+    .business-card a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+    .business-card a:hover {
+      text-decoration: underline;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Discover Your Personality</h1>
+    <input type="text" id="nameInput" class="input-name" placeholder="Enter your name" /><br>
+    <button onclick="findPersonalityNumber()">Show My Personality</button>
+    <div class="result" id="result"></div>
+
+    <div class="business-card" id="businessCard">
+      <div class="top-section">
+        <div class="name-title">
+          🔮 <strong>Deepa JayKay</strong><br>
+          Tarot Card Reader & Numerologist
+        </div>
+        <img src="https://deepajaykay.github.io/LuckyNumber_Pub/Me_Image.jpg" alt="Deepa JayKay Photo" />
+      </div>
+      <br>
+      📍 <strong>Location:</strong> Chennai - 73<br>
+      📞 <strong>Phone:</strong> <a href="tel:+916380719683">+91 6380 719 683</a><br>
+      💌 <strong>Email:</strong> <a href="mailto:tarot.deephashanmugavelu@gmail.com">tarot.deephashanmugavelu@gmail.com</a><br><br>
+
+      🔗 <strong>Socials:</strong><br>
+      👉 <a href="https://www.instagram.com/deepa_jaykay/?hl=en" target="_blank">Instagram @deepa_jaykay</a><br>
+      👉 <a href="https://www.facebook.com/share/199yFUYfNM/?mibextid=wwXIfr" target="_blank">Facebook Profile</a><br>
+    </div>
+  </div>
+
+  <script>
+    const pythagoreanTable = {
+      A:1, B:2, C:3, D:4, E:5, F:6, G:7, H:8, I:9,
+      J:1, K:2, L:3, M:4, N:5, O:6, P:7, Q:8, R:9,
+      S:1, T:2, U:3, V:4, W:5, X:6, Y:7, Z:8
+    };
+
+    const personalityMap = {
+      1: "Confident, Strong & Independent person — தன்னம்பிக்கை, வலிமை மற்றும் சுதந்திரமான நபர்",
+      2: "Honest, Cooperative & Diplomatic Person — நேர்மையான, கூட்டுறவு மற்றும் ராஜதந்திர நபர்",
+      3: "Cheerful & Creative with entertainment sense — பொழுதுபோக்கு உணர்வுடன் மிகுந்தச்சிநை & படைப்பாற்றல்",
+      4: "Disciplined and Hardworking — ஒழுக்கமும் மற்றும் கடின உழைப்பாளி",
+      5: "Impressive as witty, Sensual & Curious — நகைச்சுவை உணர்வு, உணர்வுகள் மற்றும் ஆர்வமுள்ளவர் ரசிக்கக்கூடியவர்",
+      6: "Highly responsible person for your own family and career — உங்கள் சொந்த குடும்பம் மற்றும் வாழ்க்கைக்கு மிகவும் பொறுப்பான நபர்",
+      7: "Secretive, but knowledgeable person too — ரகசியமானவர், ஆனால் அறிவுள்ளவரும் கூட.",
+      8: "Hardworking & Positive person — கடின உழைப்பாளி & நேர்மையான நபர்",
+      9: "Intellectual & real humanitarian — அறிவுள்ள மற்றும் உண்மையான மனிதாபிமானம்"
+    };
+
+    function reduceToSingleDigit(num) {
+      while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+        num = num.toString().split('').reduce((acc, val) => acc + parseInt(val), 0);
+      }
+      return num;
+    }
+
+    function findPersonalityNumber() {
+      const name = document.getElementById("nameInput").value.toUpperCase();
+      let total = 0;
+
+      for (let char of name) {
+        if (pythagoreanTable[char]) {
+          total += pythagoreanTable[char];
+        }
+      }
+
+      const finalNumber = reduceToSingleDigit(total);
+      const resultDiv = document.getElementById("result");
+      const personality = personalityMap[finalNumber] || "No data available";
+
+      resultDiv.innerHTML = `✨ ${personality}`;
+      document.getElementById("businessCard").style.display = "block";
+    }
+  </script>
+</body>
+</html>
